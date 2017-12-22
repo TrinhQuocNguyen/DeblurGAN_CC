@@ -3,10 +3,6 @@
 
 Pytorch implementation of the paper DeblurGAN: Blind Motion Deblurring Using Conditional Adversarial Networks.
 
-Our network takes blurry image as an input and procude the corresponding sharp estimate, as in the example:
-<img src="images/animation3.gif" width="400px"/> <img src="images/animation4.gif" width="400px"/>
-
-
 The model we use is Conditional Wasserstein GAN with Gradient Penalty + Perceptual loss based on VGG-19 activations. Such architecture also gives good results on other image-to-image translation problems (super resolution, colorization, inpainting, dehazing etc.)
 
 ## How to run
@@ -25,6 +21,16 @@ To test a model put your blurry images into a folder and run:
 ```bash
 python test.py --dataroot /.path_to_your_data --model test --dataset_mode single --learn_residual
 ```
+--TRAIN--
+```bash
+python train.py --dataroot ./datasets/training --which_direction BtoA --fineSize 512 --loadSizeX 640 --loadSizeY 640
+```
+--TEST--
+```bash
+python test.py --dataroot /.path_to_your_data --model test --dataset_mode single --learn_residual --resize_or_crop scale_width --fineSize 500 --loadSizeX 500 --loadSizeY 640
+```
+
+
 ## Data
 Download dataset for Object Detection benchmark from [Google Drive](https://drive.google.com/file/d/1CPMBmRj-jBDO2ax4CxkBs9iczIFrs8VA/view?usp=sharing)
 
